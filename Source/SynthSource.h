@@ -157,20 +157,27 @@ struct SynthSource  : public AudioSource
         // the synth always adds its output to the audio buffer, so we have to clear it
         // first..
         bufferToFill.clearActiveBufferRegion();
-
+        
 
         auto numSamples = bufferToFill.numSamples;
         midiBuffer.clear();
+
 
         int nextEventIndex  = midiFile.getTrack(0)->getNextIndexAtTime(samplePosition/sampleRate);
         double nextEventTime = midiFile.getTrack(0)->getEventTime(nextEventIndex);
         auto nextEventTimeInSamples = nextEventTime * sampleRate;
         
+//        DBG("next event Time in sec = " << nextEventTime);
+//        auto nextMessage = midiFile.getTrack(0)->getEventPointer(nextEventIndex)->message;
+//        DBG("next event " << nextMessage.getDescription());
         
-        if (nextEventTimeInSamples > samplePosition && nextEventTimeInSamples <= samplePosition + numSamples )
+        while (nextEventTimeInSamples >= samplePosition && nextEventTimeInSamples <= samplePosition + numSamples )
         {
             auto bufferOffset = nextEventTimeInSamples - samplePosition;
             midiBuffer.addEvent(midiFile.getTrack(0)->getEventPointer(nextEventIndex)->message, bufferOffset);
+            
+            nextEventIndex++;
+            nextEventTimeInSamples = midiFile.getTrack(0)->getEventTime(nextEventIndex) * sampleRate;
         }
 
         
@@ -204,6 +211,8 @@ struct SynthSource  : public AudioSource
         {
             DBG("event time stamp " << String(midiFile.getTrack(0)->getEventTime(i)));
         }
+        
+        
     }
     
     //==============================================================================

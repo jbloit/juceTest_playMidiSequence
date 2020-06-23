@@ -4,7 +4,7 @@
               jucerVersion="5.4.7">
   <MAINGROUP id="AFnD5X" name="juce_playMidiSequence">
     <GROUP id="{A4C84BDD-F768-28B0-AEF5-05E1A4FDC9E1}" name="Source">
-      <FILE id="aOab43" name="pianoPhase.mid" compile="0" resource="1" file="Source/pianoPhase.mid"/>
+      <FILE id="EjaDeN" name="pianoPhase.mid" compile="0" resource="1" file="Source/pianoPhase.mid"/>
       <FILE id="SVNqls" name="SynthSource.h" compile="0" resource="0" file="Source/SynthSource.h"/>
       <FILE id="WzoOaC" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
       <FILE id="RztdkD" name="MainComponent.cpp" compile="1" resource="0"
