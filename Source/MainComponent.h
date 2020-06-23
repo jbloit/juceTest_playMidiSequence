@@ -9,6 +9,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "SynthSource.h"
 
 //==============================================================================
 /*
@@ -35,6 +36,11 @@ private:
     //==============================================================================
     // Your private member variables go here...
 
-
+    SynthSource synthAudioSource;
+    
+    
+    TextButton button;
+    
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
