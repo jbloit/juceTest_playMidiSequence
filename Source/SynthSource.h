@@ -164,11 +164,13 @@ struct SynthSource  : public AudioSource
 
         int nextEventIndex  = midiFile.getTrack(0)->getNextIndexAtTime(samplePosition/sampleRate);
         double nextEventTime = midiFile.getTrack(0)->getEventTime(nextEventIndex);
-        nextEventTime = nextEventTime * sampleRate;
+        auto nextEventTimeInSamples = nextEventTime * sampleRate;
         
-        if (nextEventTime > samplePosition && nextEventTime <= samplePosition + numSamples )
+        
+        if (nextEventTimeInSamples > samplePosition && nextEventTimeInSamples <= samplePosition + numSamples )
         {
-            midiBuffer.addEvent(midiFile.getTrack(0)->getEventPointer(nextEventIndex)->message, 0);
+            auto bufferOffset = nextEventTimeInSamples - samplePosition;
+            midiBuffer.addEvent(midiFile.getTrack(0)->getEventPointer(nextEventIndex)->message, bufferOffset);
         }
 
         
@@ -177,6 +179,12 @@ struct SynthSource  : public AudioSource
         
         
         samplePosition += numSamples;
+        
+        if (samplePosition >= midiFile.getTrack(0)->getEndTime()*sampleRate)
+        {
+            samplePosition = 0;
+        }
+        
     }
     
     void initMidiSequence()
