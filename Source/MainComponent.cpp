@@ -29,10 +29,10 @@ MainComponent::MainComponent()
     }
     
     
-    button.setButtonText("play");
-    addAndMakeVisible(button);
-
-    button.onClick = [this] {synthAudioSource.synth.noteOn(0, 60, 50);};
+//    button.setButtonText("play");
+//    addAndMakeVisible(button);
+//
+//    button.onClick = [this] {synthAudioSource.synth.noteOn(0, 60, 50);};
     
 }
 
@@ -70,6 +70,5 @@ void MainComponent::paint (Graphics& g)
 
 void MainComponent::resized()
 {
-    auto area = getLocalBounds();
-    button.setBounds(area.reduced(getHeight()/4));
+
 }
