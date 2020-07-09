@@ -191,7 +191,13 @@ struct SynthSource  : public AudioSource
         while (nextEventTimeInSamples >= samplePosition && nextEventTimeInSamples <= samplePosition + numSamples )
         {
             auto bufferOffset = nextEventTimeInSamples - samplePosition;
-            midiBuffer.addEvent(midiFile.getTrack(0)->getEventPointer(nextEventIndex)->message, bufferOffset);
+
+            if (midiFile.getTrack(0)->getEventPointer(nextEventIndex)->message.isNoteOn())
+            {
+                            midiBuffer.addEvent(midiFile.getTrack(0)->getEventPointer(nextEventIndex)->message, bufferOffset);
+            }
+            
+
             
             nextEventIndex++;
             nextEventTimeInSamples = midiFile.getTrack(0)->getEventTime(nextEventIndex) * sampleRate;

@@ -4,6 +4,7 @@
               displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="AFnD5X" name="juce_playMidiSequence">
     <GROUP id="{A4C84BDD-F768-28B0-AEF5-05E1A4FDC9E1}" name="Source">
+      <FILE id="l2m9n7" name="pianoPhase.mid" compile="0" resource="1" file="Source/pianoPhase.mid"/>
       <GROUP id="{9C044EC0-4FEE-7E78-FA86-6033E74ACF12}" name="samples">
         <FILE id="pwK8gh" name="note_B.wav" compile="0" resource="1" file="Source/samples/note_B.wav"/>
         <FILE id="M4JgtH" name="note_Csharp.wav" compile="0" resource="1" file="Source/samples/note_Csharp.wav"/>
@@ -11,7 +12,6 @@
         <FILE id="bgnhvw" name="note_E.wav" compile="0" resource="1" file="Source/samples/note_E.wav"/>
         <FILE id="CJEGzd" name="note_Fsharp.wav" compile="0" resource="1" file="Source/samples/note_Fsharp.wav"/>
       </GROUP>
-      <FILE id="EjaDeN" name="pianoPhase.mid" compile="0" resource="1" file="Source/pianoPhase.mid"/>
       <FILE id="SVNqls" name="SynthSource.h" compile="0" resource="0" file="Source/SynthSource.h"/>
       <FILE id="WzoOaC" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
       <FILE id="RztdkD" name="MainComponent.cpp" compile="1" resource="0"
@@ -39,6 +39,8 @@
         <MODULEPATH id="juce_gui_basics" path="../../../../../Applications/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../../../../Applications/JUCE/modules"/>
         <MODULEPATH id="juce_opengl" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_osc" path="../../../../../Applications/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <XCODE_IPHONE targetFolder="Builds/iOS">
@@ -60,6 +62,8 @@
         <MODULEPATH id="juce_gui_basics" path="../../../../../Applications/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../../../../Applications/JUCE/modules"/>
         <MODULEPATH id="juce_opengl" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_osc" path="../../../../../Applications/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_IPHONE>
     <ANDROIDSTUDIO targetFolder="Builds/Android">
@@ -81,6 +85,8 @@
         <MODULEPATH id="juce_gui_basics" path="../../../../../Applications/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../../../../Applications/JUCE/modules"/>
         <MODULEPATH id="juce_opengl" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_osc" path="../../../../../Applications/JUCE/modules"/>
       </MODULEPATHS>
     </ANDROIDSTUDIO>
   </EXPORTFORMATS>
@@ -93,11 +99,13 @@
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_osc" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
   </MODULES>
   <LIVE_SETTINGS>
     <OSX/>
