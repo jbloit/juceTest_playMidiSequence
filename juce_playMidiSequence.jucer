@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="HIRA9d" name="juce_playMidiSequence" projectType="guiapp"
-              jucerVersion="5.4.7">
+              displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="AFnD5X" name="juce_playMidiSequence">
     <GROUP id="{A4C84BDD-F768-28B0-AEF5-05E1A4FDC9E1}" name="Source">
+      <GROUP id="{9C044EC0-4FEE-7E78-FA86-6033E74ACF12}" name="samples">
+        <FILE id="pwK8gh" name="note_B.wav" compile="0" resource="1" file="Source/samples/note_B.wav"/>
+        <FILE id="M4JgtH" name="note_Csharp.wav" compile="0" resource="1" file="Source/samples/note_Csharp.wav"/>
+        <FILE id="dlERKt" name="note_D.wav" compile="0" resource="1" file="Source/samples/note_D.wav"/>
+        <FILE id="bgnhvw" name="note_E.wav" compile="0" resource="1" file="Source/samples/note_E.wav"/>
+        <FILE id="CJEGzd" name="note_Fsharp.wav" compile="0" resource="1" file="Source/samples/note_Fsharp.wav"/>
+      </GROUP>
       <FILE id="EjaDeN" name="pianoPhase.mid" compile="0" resource="1" file="Source/pianoPhase.mid"/>
       <FILE id="SVNqls" name="SynthSource.h" compile="0" resource="0" file="Source/SynthSource.h"/>
       <FILE id="WzoOaC" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>

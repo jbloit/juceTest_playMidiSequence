@@ -126,13 +126,12 @@ struct SynthSource  : public AudioSource
         for (auto i = 0; i < 4; ++i)
         {
             synth.addVoice (new SineWaveVoice());   // These voices will play our custom sine-wave sounds..
-
+            synth.addVoice (new SamplerVoice());
         }
 
-        
         // ..and add a sound for them to play...
-        setUsingSineWaveSound();
-        
+//        setUsingSineWaveSound();
+        setUsingSampledSound();
         
     }
 
@@ -141,6 +140,30 @@ struct SynthSource  : public AudioSource
         synth.clearSounds();
         synth.addSound (new SineWaveSound());
     }
+    
+    void setUsingSampledSound()
+    {
+        WavAudioFormat wavFormat;
+
+        std::unique_ptr<AudioFormatReader> audioReader (wavFormat.createReaderFor (new MemoryInputStream(BinaryData::note_B_wav, BinaryData::note_B_wavSize, true), true));
+
+        BigInteger allNotes;
+        allNotes.setRange (0, 128, true);
+
+        
+        synth.clearSounds();
+        synth.addSound (new SamplerSound ("demo sound",
+                                          *audioReader,
+                                          allNotes,
+                                          74,   // root midi note
+                                          0.001,  // attack time
+                                          0.1,  // release time
+                                          10.0  // maximum sample length
+                                          ));
+        
+        DBG("sdfsdf");
+    }
+
 
     void prepareToPlay (int /*samplesPerBlockExpected*/, double newSampleRate) override
     {
@@ -154,11 +177,9 @@ struct SynthSource  : public AudioSource
 
     void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill) override
     {
-        // the synth always adds its output to the audio buffer, so we have to clear it
-        // first..
+
         bufferToFill.clearActiveBufferRegion();
         
-
         auto numSamples = bufferToFill.numSamples;
         midiBuffer.clear();
 
@@ -166,11 +187,7 @@ struct SynthSource  : public AudioSource
         int nextEventIndex  = midiFile.getTrack(0)->getNextIndexAtTime(samplePosition/sampleRate);
         double nextEventTime = midiFile.getTrack(0)->getEventTime(nextEventIndex);
         auto nextEventTimeInSamples = nextEventTime * sampleRate;
-        
-//        DBG("next event Time in sec = " << nextEventTime);
-//        auto nextMessage = midiFile.getTrack(0)->getEventPointer(nextEventIndex)->message;
-//        DBG("next event " << nextMessage.getDescription());
-        
+                
         while (nextEventTimeInSamples >= samplePosition && nextEventTimeInSamples <= samplePosition + numSamples )
         {
             auto bufferOffset = nextEventTimeInSamples - samplePosition;
@@ -191,7 +208,6 @@ struct SynthSource  : public AudioSource
         {
             samplePosition = 0;
         }
-        
     }
     
     void initMidiSequence()
@@ -206,6 +222,10 @@ struct SynthSource  : public AudioSource
         DBG("Found N events " << midiFile.getTrack(0)->getNumEvents());
         
         sequence = MidiMessageSequence{*midiFile.getTrack(0)};
+        
+        
+        double sequenceEndTime = sequence.getEndTime();
+        double fileEndTime = midiFile.getLastTimestamp();
         
         for (int i=0; i<midiFile.getTrack(0)->getNumEvents(); i++)
         {
